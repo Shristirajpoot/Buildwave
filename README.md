@@ -56,27 +56,25 @@ Once uploaded, the system will:
 - Visual feedback will be shown via **LEDs** (green for success, red for failure).
 - Display detailed information on a failure including project name, user, and description of the failure.
 
+###Contributing
+We welcome contributions to improve this project! If you find a bug or have an idea for a new feature, feel free to open an issue or submit a pull request.
+
+To contribute:
+
+Fork the repository.
+Clone your fork to your local machine.
+Make changes and push them to your fork.
+Create a pull request to the original repository.
+
+
 ### Example JSON Request to Update Build Status
 To send build status updates to the system, use a **POST** request with the following **JSON** structure:
 ```json
 {
-  "stat": "s",        // status: 's' for success, 'f' for failure, 'c' for constructing, etc.
-  "proj": "Project X", // project name
-  "build": "Build v1.2", // build version
-  "usu": "John Doe",  // user who triggered the build
-  "desc": "Build completed successfully." // description of the build result
+  "stat": "s",        
+  "proj": "Project X", 
+  "build": "Build v1.2", 
+  "usu": "John Doe",
+  "desc": "Build completed successfully." 
 }
 
-Where:
-
-stat: One of the status codes ('s' for success, 'f' for failure, 'c' for constructing, etc.)
-proj: Project name
-build: Build identifier
-usu: Username of the person triggering the build
-desc: A description of the build or failure
-
-Contributing
-Feel free to fork this project, submit issues, or create pull requests. Any improvements or bug fixes are welcome!
-
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
