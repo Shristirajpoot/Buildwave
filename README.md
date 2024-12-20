@@ -1,58 +1,72 @@
-Buildwave
+# Buildwave: Real-Time Build Monitoring and Management System
 
-Buildwave is an innovative project designed to monitor and manage build statuses in real-time. Using an embedded system with an Ethernet connection, this project tracks the success, failure, and progress of builds, providing real-time feedback on a display and via a web interface. This system integrates an Arduino-based microcontroller, an Adafruit TFT LCD display, and a web server to communicate build statuses effectively.
+## Overview
+**Buildwave** is a **real-time build monitoring system** built on an embedded platform, designed to streamline the management and visualization of software build statuses. The system uses an Arduino-based microcontroller with Ethernet connectivity to provide instant feedback on build processes through both a **visual TFT LCD display** and a **web interface**. Buildwave helps to detect build issues immediately, allowing developers to address issues faster, improving overall productivity.
 
-Key Features
-Real-time Build Monitoring: Tracks build status (Success, Failure, In Progress) and displays it on a TFT LCD.
-Web Interface: A simple HTTP server is embedded, allowing users to send build status updates and view the results in JSON format.
-LED Indicators: Visual feedback via LEDs indicating the current build status.
-Error Handling: Clear error messages for invalid data or connection issues.
-Technologies Used
-Embedded System: Arduino microcontroller for the hardware setup.
-Libraries:
-Adafruit GFX
-Adafruit TFTLCD
-ArduinoJson
-Thread (for periodic task execution)
-Ethernet
-Networking: Utilizes Ethernet to communicate over the network and provides build status updates.
-C/C++: Code is written using the Arduino framework in C/C++.
-Hardware Components
-Microcontroller: Arduino-based board (compatible with Ethernet shield)
-TFT LCD: Adafruit TFT LCD screen for status display
-Ethernet Shield: To provide Ethernet connectivity
-LEDs: Used for success and failure indication
-Setup Instructions
-Hardware Setup
-Microcontroller: Connect the Arduino board to your computer.
-Ethernet Shield: Attach the Ethernet shield to the Arduino to enable networking.
-TFT LCD Display: Connect the Adafruit TFT LCD screen to the appropriate pins of the Arduino. Refer to the schematic for detailed connections.
-LEDs: Connect the success and failure LEDs to the specified pins in the code.
-Software Setup
-Install Libraries: Install the required libraries in your Arduino IDE:
-Adafruit GFX
-Adafruit TFTLCD
-ArduinoJson
-Thread
-Upload Code: Upload the provided code to your Arduino using the Arduino IDE.
-Connect to Network: Ensure the Arduino is connected to the network via Ethernet. Update the IP address in the code if necessary.
-Running the Project
-Once the setup is complete, the device will start running:
+This project combines **real-time embedded system design**, **networking**, and **UI development**. It is ideal for applications where efficient build monitoring, status reporting, and hardware interaction are crucial.
 
-The TFT LCD will display the current build status.
-LEDs will show the build progress (green for success, red for failure).
-The device will serve a web interface on port 80, where it will accept build status updates in JSON format.
-Example JSON Request
-To update the build status, send the following JSON structure via a POST request:
+---
 
-json
+## Key Features
+
+- <span style="color:green;">**Real-Time Monitoring**</span>: Displays current build status (**Success**, **Failure**, **In Progress**) on a TFT LCD display.
+- <span style="color:blue;">**Web Interface**</span>: A simple, self-hosted HTTP server that receives and processes build status updates in **JSON** format.
+- <span style="color:red;">**LED Indicators**</span>: Success and failure statuses are indicated using **LEDs**, providing a quick visual signal for the current build status.
+- <span style="color:orange;">**Error Handling**</span>: Displays error messages on the LCD screen for invalid or missing data, providing immediate feedback to the user.
+- <span style="color:purple;">**User-Friendly Interface**</span>: The project includes an easy-to-read display of project information such as **project name**, **build number**, **user**, and **description** of failure if any.
+
+---
+
+## Technologies Used
+
+- **Embedded System Platform**: Built using **Arduino** for microcontroller functionality.
+- **Libraries**:
+  - **Adafruit GFX** and **Adafruit TFTLCD** for handling the graphical LCD display.
+  - **ArduinoJson** for parsing and managing JSON data from web requests.
+  - **Thread** for handling timed tasks such as LED blink patterns.
+  - **Ethernet** for networking and communication between the embedded system and the client machine.
+- **Programming Languages**: **C/C++** (Arduino IDE)
+- **Networking**: **HTTP** web server that allows interaction via a browser or HTTP client.
+- **Hardware Components**: **Arduino**-based microcontroller, **Ethernet shield**, **TFT LCD screen**, **LEDs**, and various resistors/cables.
+
+---
+
+## Setup Instructions
+
+### Hardware Setup
+1. **Connect the Arduino to your PC** using a **USB cable** for programming.
+2. **Attach the Ethernet Shield** to the Arduino to provide networking capabilities.
+3. **Connect the TFT LCD Screen** to the designated pins on the Arduino as per the schematic.
+4. **Connect LEDs**: Connect the success and failure LEDs to the pins specified in the code (e.g., pin 3 for success, pin 10 for failure).
+
+### Software Setup
+1. **Install Arduino IDE**: Ensure that you have the Arduino IDE installed on your machine. You can download it from [here](https://www.arduino.cc/en/software).
+2. **Install Libraries**:
+   - Install **Adafruit GFX** and **Adafruit TFTLCD** libraries from the Library Manager in the Arduino IDE.
+   - Install **ArduinoJson** via the Library Manager.
+   - Install **Thread** library if needed.
+3. **Upload Code**: Open the `Buildwave.ino` file in the Arduino IDE and upload the code to your Arduino board.
+4. **Network Configuration**: Ensure that your Arduino is connected to the local network via Ethernet. You may need to modify the IP address in the code to match your network configuration.
+
+### Running the Project
+Once uploaded, the system will:
+- Start the embedded HTTP server on port **80**.
+- Display the status of the build process on the **TFT LCD**.
+- Update the status in **real-time** based on incoming HTTP requests with build information.
+- Visual feedback will be shown via **LEDs** (green for success, red for failure).
+- Display detailed information on a failure including project name, user, and description of the failure.
+
+### Example JSON Request to Update Build Status
+To send build status updates to the system, use a **POST** request with the following **JSON** structure:
+```json
 {
-  "stat": "s",
-  "proj": "Project Name",
-  "build": "Build123",
-  "usu": "User123",
-  "desc": "Build completed successfully."
+  "stat": "s",        // status: 's' for success, 'f' for failure, 'c' for constructing, etc.
+  "proj": "Project X", // project name
+  "build": "Build v1.2", // build version
+  "usu": "John Doe",  // user who triggered the build
+  "desc": "Build completed successfully." // description of the build result
 }
+
 Where:
 
 stat: One of the status codes ('s' for success, 'f' for failure, 'c' for constructing, etc.)
