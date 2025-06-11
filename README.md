@@ -1,80 +1,154 @@
-# Buildwave: Real-Time Build Monitoring and Management System
+# 🚧 Buildwave – Real-Time Build Monitoring System 📟🌐  
 
-## Overview
-**Buildwave** is a **real-time build monitoring system** built on an embedded platform, designed to streamline the management and visualization of software build statuses. The system uses an Arduino-based microcontroller with Ethernet connectivity to provide instant feedback on build processes through both a **visual TFT LCD display** and a **web interface**. Buildwave helps to detect build issues immediately, allowing developers to address issues faster, improving overall productivity.
+> ⚙️ Embedded system that instantly visualizes software build statuses via TFT display, LEDs, and web interface.
 
-This project combines **real-time embedded system design**, **networking**, and **UI development**. It is ideal for applications where efficient build monitoring, status reporting, and hardware interaction are crucial.
-
----
-
-## Key Features
-
-- <span style="color:green;">**Real-Time Monitoring**</span>: Displays current build status (**Success**, **Failure**, **In Progress**) on a TFT LCD display.
-- <span style="color:blue;">**Web Interface**</span>: A simple, self-hosted HTTP server that receives and processes build status updates in **JSON** format.
-- <span style="color:red;">**LED Indicators**</span>: Success and failure statuses are indicated using **LEDs**, providing a quick visual signal for the current build status.
-- <span style="color:orange;">**Error Handling**</span>: Displays error messages on the LCD screen for invalid or missing data, providing immediate feedback to the user.
-- <span style="color:purple;">**User-Friendly Interface**</span>: The project includes an easy-to-read display of project information such as **project name**, **build number**, **user**, and **description** of failure if any.
+![Platform](https://img.shields.io/badge/Platform-Arduino-blue)
+![License](https://img.shields.io/github/license/Shristirajpoot/thermotrack)
+![Last Commit](https://img.shields.io/github/last-commit/Shristirajpoot/Buildwave?color=green)
+![Repo Stars](https://img.shields.io/github/stars/Shristirajpoot/Buildwave?style=social)
 
 ---
 
-## Technologies Used
+## 🌟 Overview
 
-- **Embedded System Platform**: Built using **Arduino** for microcontroller functionality.
-- **Libraries**:
-  - **Adafruit GFX** and **Adafruit TFTLCD** for handling the graphical LCD display.
-  - **ArduinoJson** for parsing and managing JSON data from web requests.
-  - **Thread** for handling timed tasks such as LED blink patterns.
-  - **Ethernet** for networking and communication between the embedded system and the client machine.
-- **Programming Languages**: **C/C++** (Arduino IDE)
-- **Networking**: **HTTP** web server that allows interaction via a browser or HTTP client.
-- **Hardware Components**: **Arduino**-based microcontroller, **Ethernet shield**, **TFT LCD screen**, **LEDs**, and various resistors/cables.
+**Buildwave** is a **real-time embedded build monitoring system** using an Arduino microcontroller.  
+It combines **networking**, **visual feedback**, and **hardware interaction** to provide instant insights into software build statuses—both visually (LCD + LEDs) and via an HTTP-based web interface.
+
+Ideal for **CI/CD pipelines, devops teams**, or **classroom demonstrations** of embedded system + software integration.
 
 ---
 
-## Setup Instructions
+## 🚀 Features
 
-### Hardware Setup
-1. **Connect the Arduino to your PC** using a **USB cable** for programming.
-2. **Attach the Ethernet Shield** to the Arduino to provide networking capabilities.
-3. **Connect the TFT LCD Screen** to the designated pins on the Arduino as per the schematic.
-4. **Connect LEDs**: Connect the success and failure LEDs to the pins specified in the code (e.g., pin 3 for success, pin 10 for failure).
+- 📺 **TFT LCD Display** — Shows live build info: project, version, user, result, description  
+- 🌐 **Web Interface** — Accepts HTTP POST requests with build status in JSON  
+- 🔴🟢 **LED Indicators** — Red for failure, green for success  
+- ⚠️ **Error Display** — Handles and displays malformed or missing data  
+- 🧠 **Smart Feedback** — Displays human-readable messages and diagnostics  
 
-### Software Setup
-1. **Install Arduino IDE**: Ensure that you have the Arduino IDE installed on your machine. You can download it from [here](https://www.arduino.cc/en/software).
-2. **Install Libraries**:
-   - Install **Adafruit GFX** and **Adafruit TFTLCD** libraries from the Library Manager in the Arduino IDE.
-   - Install **ArduinoJson** via the Library Manager.
-   - Install **Thread** library if needed.
-3. **Upload Code**: Open the `Buildwave.ino` file in the Arduino IDE and upload the code to your Arduino board.
-4. **Network Configuration**: Ensure that your Arduino is connected to the local network via Ethernet. You may need to modify the IP address in the code to match your network configuration.
+---
 
-### Running the Project
-Once uploaded, the system will:
-- Start the embedded HTTP server on port **80**.
-- Display the status of the build process on the **TFT LCD**.
-- Update the status in **real-time** based on incoming HTTP requests with build information.
-- Visual feedback will be shown via **LEDs** (green for success, red for failure).
-- Display detailed information on a failure including project name, user, and description of the failure.
+## 🛠️ Technologies Used
 
-###Contributing
-We welcome contributions to improve this project! If you find a bug or have an idea for a new feature, feel free to open an issue or submit a pull request.
+| Component       | Description                                  |
+|----------------|----------------------------------------------|
+| 💻 Microcontroller | Arduino UNO (or compatible)              |
+| 🌐 Networking   | Ethernet Shield + HTTP Server               |
+| 📺 Display      | TFT LCD using Adafruit GFX + TFTLCD libs    |
+| 🔄 JSON Parser  | ArduinoJson                                 |
+| 🧵 Threading    | `Thread` library for timed tasks            |
+| 🔌 LEDs         | For visual success/failure signal           |
 
-To contribute:
+---
 
-Fork the repository.
-Clone your fork to your local machine.
-Make changes and push them to your fork.
-Create a pull request to the original repository.
+## 📂 Project Structure
 
+```plaintext
+Buildwave/
+├── BuildWave.ino       # Main Arduino sketch
+├── README.md           # Project documentation
+└── .gitattributes      # Line-ending normalization
+```
 
-### Example JSON Request to Update Build Status
-To send build status updates to the system, use a **POST** request with the following **JSON** structure:
+## 🔧 Setup Instructions
+
+### 🖥️ Hardware Setup
+- Connect Arduino to your PC (via USB).
+
+- Mount the Ethernet Shield onto Arduino.
+
+- Wire the TFT LCD as per your screen model and pin mapping in code.
+
+- Connect:
+
+- 🟢 Green LED (success) to pin 3
+
+- 🔴 Red LED (failure) to pin 10
+
+## 💾 Software Setup
+- Install Arduino IDE
+➤ Download here
+
+- Install Required Libraries
+
+  - Adafruit GFX
+
+  - Adafruit TFTLCD
+
+  - ArduinoJson
+
+  - Thread
+
+(Use Library Manager inside Arduino IDE)
+
+- Upload the Code
+
+  - Open BuildWave.ino
+
+  - Adjust IP address to match your network
+
+  - Upload to board via USB
+
+## ▶️ Running the Project
+After uploading:
+
+- The Arduino runs a web server on port 80
+
+- LCD displays build status live
+
+- Send HTTP POST requests to update status
+
+- LEDs reflect build result (✅ green = success, ❌ red = failure)
+
+## 📨 Example JSON Request
+Send an HTTP POST to the Arduino's IP address with the following payload:
+
 ```json
 {
-  "stat": "s",        
-  "proj": "Project X", 
-  "build": "Build v1.2", 
+  "stat": "s",
+  "proj": "Project X",
+  "build": "Build v1.2",
   "usu": "John Doe",
-  "desc": "Build completed successfully." 
+  "desc": "Build completed successfully."
 }
+```
+- stat: "s" (success), "f" (failure), or "p" (in progress)
 
+- proj: Project name
+
+- build: Build version/label
+
+- usu: User/owner of build
+
+- desc: Optional description (esp. for failures)
+
+## 🛣️ Roadmap / Ideas
+
+- 📡 Add Wi-Fi support (ESP32 version)
+
+- 💻 Web dashboard for history & analytics
+
+- 🔐 Authenticated endpoints
+
+- 🔊 Add buzzer for audio alert
+
+## 🤝 Contributing
+We welcome your ideas and PRs!
+
+- Fork this repo
+
+- Create a branch: git checkout -b feature/your-feature
+
+- Commit & push
+
+- Open a pull request with your changes
+
+## 👩‍💻 Author
+### Shristi Rajpoot
+- 📧 shristirajpoot369@gmail.com
+-  🔗 @Shristirajpoot
+
+## 📄 License
+Released under the MIT License – see LICENSE for details.
+
+### ⭐ If this helped you streamline your embedded builds or inspired a project, consider starring the repo!
